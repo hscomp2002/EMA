@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
+    "keltnerchannel": "^1.4.3",
     "node-binance-api": "^0.12.5"
   }
 }
