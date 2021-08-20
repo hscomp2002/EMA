@@ -98,6 +98,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:20,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
           sl: ema50,
@@ -108,6 +110,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:20,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
           sl: ema50,
@@ -122,6 +126,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:50,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
           sl: ema100,
@@ -132,6 +138,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:50,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
           sl: ema100,
@@ -145,6 +153,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:100,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
           sl: lastClosePrice - (ema50-ema100) ,
@@ -155,6 +165,8 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          lastClosePrice,
+          ema:100,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
           sl: lastClosePrice + (ema100-ema50),
