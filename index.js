@@ -19,13 +19,13 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        OUT["ema50"] = ema(closePriceArray.slice(150, 200), 50)[0];
-        OUT["ema100"] = ema(closePriceArray.slice(100, 200), 100)[0];
-        OUT["ema200"] = ema(closePriceArray, 200)[0];
-        OUT["lastClose"] = closePriceArray[199];
-        OUT["lastCandleColor"] = closePriceArray[199] < closePriceArray[198] ? "red" : "green";
+        OUT["ema20"] = ema(closePriceArray.slice(180, 100), 50)[0];
+        OUT["ema50"] = ema(closePriceArray.slice(50, 100), 100)[0];
+        OUT["ema100"] = ema(closePriceArray, 100)[0];
+        OUT["lastClose"] = closePriceArray[99];
+        OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
         resolve(OUT);
-      }, { limit: 201, endTime: +new Date() });
+      }, { limit: 101, endTime: +new Date() });
     } catch (error) {
       reject(error);
     }
@@ -34,26 +34,26 @@ function getSymbolEmaANDLastClose(symbol) {
 }
 
 function calculateSymbolsInfo(symbolInfo) {
-  if (symbolInfo.ema50 > symbolInfo.ema100 && symbolInfo.ema100 > symbolInfo.ema200) {
-    const d50_100 = (symbolInfo.ema50 - symbolInfo.ema100) / ((symbolInfo.ema50 + symbolInfo.ema100)/2);
-    if((d50_100*100) < process.env.EMA_MINIMUM_DIF_PERCENT){
+  if (symbolInfo.ema20 > symbolInfo.ema50 && symbolInfo.ema50 > symbolInfo.ema100) {
+    const d20_50 = (symbolInfo.ema20 - symbolInfo.ema50) / ((symbolInfo.ema20 + symbolInfo.ema50)/2);
+    if((d20_50*100) < process.env.EMA_MINIMUM_DIF_PERCENT){
       return false;
     }
-    const d100_200 = (symbolInfo.ema100 - symbolInfo.ema200) / ((symbolInfo.ema100 + symbolInfo.ema200)/2);
-    if((d100_200 * 100) < process.env.EMA_MINIMUM_DIF_PERCENT){
+    const d50_100 = (symbolInfo.ema50 - symbolInfo.ema100) / ((symbolInfo.ema50 + symbolInfo.ema100)/2);
+    if((d50_100 * 100) < process.env.EMA_MINIMUM_DIF_PERCENT){
       return false;
     }
     symbolInfo.marketStatus = "bullish";
     return symbolInfo;
   }
 
-  if (symbolInfo.ema200 > symbolInfo.ema100 && symbolInfo.ema100 > symbolInfo.ema50) {
-    const d50_100 = (symbolInfo.ema100 - symbolInfo.ema50) / ((symbolInfo.ema50 + symbolInfo.ema100)/2);
-    if((d50_100*100) < process.env.EMA_MINIMUM_DIF_PERCENT){
+  if (symbolInfo.ema100 > symbolInfo.ema50 && symbolInfo.ema50 > symbolInfo.ema20) {
+    const d20_50 = (symbolInfo.ema50 - symbolInfo.ema20) / ((symbolInfo.ema20 + symbolInfo.ema50)/2);
+    if((d20_50*100) < process.env.EMA_MINIMUM_DIF_PERCENT){
       return false;
     }
-    const d100_200 = (symbolInfo.ema200 - symbolInfo.ema200) / ((symbolInfo.ema100 + symbolInfo.ema200)/2);
-    if((d100_200 * 100) < process.env.EMA_MINIMUM_DIF_PERCENT){
+    const d50_100 = (symbolInfo.ema100 - symbolInfo.ema50) / ((symbolInfo.ema100 + symbolInfo.ema50)/2);
+    if((d50_100 * 100) < process.env.EMA_MINIMUM_DIF_PERCENT){
       return false;
     }
     symbolInfo.marketStatus = "bearish";
