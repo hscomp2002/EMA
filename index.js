@@ -4,8 +4,8 @@ require("dotenv").config();
 const ema = require("keltnerchannel").ema;
 const Binance = require("node-binance-api");
 const binance = new Binance().options({
-  APIKEY: "ZWTtDTaeoqfbhEnXrkn2S4oixDl6KwBXSWgJioCy8hlbFda1K7fNHqt0SHZ0PJ3z",
-  APISECRET: "O4Hwxfn3ByDfU1xUfXsp7daMc1MCHfkige2eRdfResTiD9dbs7LajKGRCtlAMLig"
+  APIKEY: process.env.APIKEY,
+  APISECRET: process.env.APISECRET
 });
 
 function getSymbolEmaANDLastClose(symbol) {
@@ -84,7 +84,9 @@ async function getSymbolesInfo(){
 }
 
 async function main() {
-  const symbolesInfo = await getSymbolesInfo();
+  const priceList = await binance.prices();
+  console.log(priceList);
+  //const symbolesInfo = await getSymbolesInfo();
   console.log(symbolesInfo);
 }
 
