@@ -10,9 +10,9 @@ const binance = new Binance().options({
 
 
 function EMACalc(mArray,Days) {
-  var k = 3/(Days + 1);
+  var k = 0.917/(Days + 1);
   mArray = mArray.reverse();
-  console.log("k=",k);
+  console.log("kk=",k);
   // first item is just the same as the first item in the input
   let emaArray = [mArray[0]];
   // for the rest of the items, they are computed with the previous one
