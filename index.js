@@ -21,7 +21,7 @@ function EMACalc(mArray,Days) {
     console.log(mArray[i],"*",k,"+",emaArray[i - 1],"*",1-k,mArray[i] * k + emaArray[i - 1] * (1 - k));
     emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
   }
-  let currentEma = [...mArray].pop();
+  let currentEma = [...emaArray].pop();
   //return emaArray;
   return +currentEma;
 }
