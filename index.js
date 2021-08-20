@@ -11,10 +11,12 @@ const binance = new Binance().options({
 
 function EMACalc(mArray,Days) {
   var k = 2/(Days + 1);
+  console.log("k=",k);
   // first item is just the same as the first item in the input
   let emaArray = [mArray[0]];
   // for the rest of the items, they are computed with the previous one
   for (var i = 1; i < mArray.length; i++) {
+    console.log(mArray[i],"*",k,"+",emaArray[i - 1],"*",1-k);
     emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
   }
   return emaArray;
