@@ -83,11 +83,17 @@ async function getSymbolesInfo(){
   return symbolsData;
 }
 
+function getEntryPosissionSymbols(symbolesInfo,priceList){
+  for(let i in symbolesInfo){
+    let price = priceList[symbolesInfo[i].symbol];
+    console.log("symbol:",symbolesInfo[i].symbol,":",price);
+  }
+}
+
 async function main() {
   const priceList = await binance.prices();
-  console.log(priceList);
-  //const symbolesInfo = await getSymbolesInfo();
-  console.log(symbolesInfo);
+  const symbolesInfo = await getSymbolesInfo();
+  getEntryPosissionSymbols(symbolesInfo,priceList);
 }
 
 main();
