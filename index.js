@@ -98,6 +98,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:20,
           symbol: symbolesInfo[i].symbol,
@@ -110,6 +113,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:20,
           symbol: symbolesInfo[i].symbol,
@@ -126,6 +132,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:50,
           symbol: symbolesInfo[i].symbol,
@@ -138,6 +147,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:50,
           symbol: symbolesInfo[i].symbol,
@@ -153,6 +165,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:100,
           symbol: symbolesInfo[i].symbol,
@@ -165,6 +180,9 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
+          ema20,
+          ema50,
+          ema100,
           lastClosePrice,
           ema:100,
           symbol: symbolesInfo[i].symbol,
