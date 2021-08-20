@@ -70,7 +70,7 @@ async function getSymbolesInfo() {
     let index = symbole;
     symbole = symbole.replace("/", "");
     let symbolInfo = await getSymbolEmaANDLastClose(symbole);
-    //let checkData = calculateSymbolsInfo(symbolInfo);
+    let checkData = calculateSymbolsInfo(symbolInfo);
     // if (!checkData) {
     //   continue;
     // }
