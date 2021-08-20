@@ -70,11 +70,11 @@ async function getSymbolesInfo() {
     let index = symbole;
     symbole = symbole.replace("/", "");
     let symbolInfo = await getSymbolEmaANDLastClose(symbole);
-    console.log(symbolInfo);
     let checkData = calculateSymbolsInfo(symbolInfo);
-    if (!checkData) {
-      continue;
-    }
+    // if (!checkData) {
+    //   continue;
+    // }
+    
     symbolsData.push({
       symbol: symbole,
       symbolInfo: checkData,
