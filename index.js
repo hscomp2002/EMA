@@ -31,7 +31,7 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        let tmp = closePriceArray.slice(90, 100);
+        let tmp = closePriceArray.slice(89, 99);
         console.log("last50",tmp);
         OUT["ema10"] = EMACalc(tmp,10);
         
