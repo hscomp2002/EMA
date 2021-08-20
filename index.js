@@ -70,11 +70,11 @@ async function getSymbolesInfo() {
     let index = symbole;
     symbole = symbole.replace("/", "");
     let symbolInfo = await getSymbolEmaANDLastClose(symbole);
-    let checkData = calculateSymbolsInfo(symbolInfo);
+    //let checkData = calculateSymbolsInfo(symbolInfo);
     // if (!checkData) {
     //   continue;
     // }
-    
+
     symbolsData.push({
       symbol: symbole,
       symbolInfo: checkData,
@@ -209,6 +209,7 @@ function isEqual(ema, price) {
 async function main() {
   //const priceList = await binance.prices();
   const symbolesInfo = await getSymbolesInfo();
+  console.log(symbolesInfo);
   //getEntryPosissionSymbols(symbolesInfo);
 }
 
