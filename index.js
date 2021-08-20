@@ -208,7 +208,8 @@ function isEqual(ema, price) {
 async function main() {
   //const priceList = await binance.prices();
   const symbolesInfo = await getSymbolesInfo();
-  getEntryPosissionSymbols(symbolesInfo);
+  console.log(symbolesInfo);
+  //getEntryPosissionSymbols(symbolesInfo);
 }
 
 main();
