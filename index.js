@@ -194,7 +194,7 @@ function getEntryPosissionSymbols(symbolesInfo) {
       }
     }
   }
-  //console.log(symbolesInfo);
+  console.log(symbolesInfo);
   console.log({signals});
   return signals;
 }
