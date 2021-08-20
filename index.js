@@ -19,8 +19,8 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        OUT["ema20"] = ema(closePriceArray.slice(180, 100), 50)[0];
-        OUT["ema50"] = ema(closePriceArray.slice(50, 100), 100)[0];
+        OUT["ema20"] = ema(closePriceArray.slice(80, 100), 20)[0];
+        OUT["ema50"] = ema(closePriceArray.slice(50, 100), 50)[0];
         OUT["ema100"] = ema(closePriceArray, 100)[0];
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
