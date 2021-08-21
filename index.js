@@ -45,7 +45,7 @@ function getSymbolEmaANDLastClose(symbol) {
         }
         let OUT = {};
         let tmp = closePriceArray;
-        OUT["ema50"] = EMACalc(tmp, 50);
+        OUT["ema50New"] = EMACalc(tmp, 50);
         OUT["ema20"] = ema(closePriceArray, 20)[20];
         OUT["ema50"] = ema(closePriceArray, 50)[50];
         OUT["ema100"] = ema(closePriceArray, 100);
