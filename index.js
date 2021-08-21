@@ -9,15 +9,19 @@ const binance = new Binance().options({
 });
 
 
-function EMACalc(mArray, Days) {
-  var k = 2 / (Days + 1);
-  console.log("mArray.lenght", mArray.length);
+function getSma(arr) {
   let sma = 0;
-  for (let j = 0; j < mArray.length; j++) {
-    sma += mArray[j];
-    console.log("mArray[j]", mArray[j], sma);
+  for (let i = 0; i < arr.length; i++) {
+    sma += arr[i];
   }
-  sma = sma / mArray.length;
+  return (sma / arr.length);
+}
+
+function EMACalc(inpArray, Days) {
+  var k = 2 / (Days + 1);
+  let smaArr = inpArray.slice(0, 90);
+  let sma = getSma(smaArr);
+  let mArray = inpArray.slice(90, 100);
   let emaArray = [];
   emaArray[0] = sma;// mArray[0];
   for (var i = 1; i < mArray.length; i++) {
@@ -40,11 +44,10 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        let tmp = closePriceArray.slice(90, 100);
-        console.log("last10", tmp);
+        let tmp = closePriceArray;
         OUT["ema10"] = EMACalc(tmp, 10);
-        OUT["ema20"] = ema(closePriceArray.slice(80, 100), 20);
-        OUT["ema50"] = ema(closePriceArray.slice(50, 100), 50);
+        OUT["ema20"] = ema(closePriceArray, 20);
+        OUT["ema50"] = ema(closePriceArray, 50);
         OUT["ema100"] = ema(closePriceArray, 100);
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
