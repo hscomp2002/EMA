@@ -20,7 +20,7 @@ function EMACalc(mArray, Days) {
   sma = sma / mArray.length;
   let emaArray = [];
   emaArray[0] = sma;// mArray[0];
-  for (var i = 11; i < mArray.length; i++) {
+  for (var i = 1; i < mArray.length; i++) {
     console.log(mArray[i], "*", k, "+", emaArray[i - 1], "*", 1 - k, mArray[i] * k + emaArray[i - 1] * (1 - k));
     emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
   }
