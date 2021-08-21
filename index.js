@@ -19,9 +19,9 @@ function getSma(arr) {
 
 function EMACalc(inpArray, Days) {
   var k = 2 / (Days + 1);
-  let smaArr = inpArray.slice(80, 90);
+  let smaArr = inpArray.slice(0, 50);
   let sma = getSma(smaArr);
-  let mArray = inpArray.slice(90, 100);
+  let mArray = inpArray.slice(50, 100);
   let emaArray = [];
   emaArray[0] = sma;// mArray[0];
   for (var i = 1; i < mArray.length; i++) {
@@ -45,10 +45,10 @@ function getSymbolEmaANDLastClose(symbol) {
         }
         let OUT = {};
         let tmp = closePriceArray;
-        OUT["ema10"] = EMACalc(tmp, 10);
+        OUT["ema50"] = EMACalc(tmp, 50);
         OUT["ema20"] = ema(closePriceArray, 20)[20];
         OUT["ema50"] = ema(closePriceArray, 50)[50];
-        OUT["ema100"] = ema(closePriceArray, 100)[100];
+        OUT["ema100"] = ema(closePriceArray, 100);
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
         resolve(OUT);
