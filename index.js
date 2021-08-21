@@ -11,7 +11,6 @@ const binance = new Binance().options({
 
 function EMACalc(mArray,Days) {
   var k = 2/(Days + 1);
-  mArray = mArray.reverse();
   console.log("k=",k);
   // first item is just the same as the first item in the input
   let emaArray=[];
@@ -37,11 +36,11 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        let tmp = closePriceArray;
-        console.log("last50" ,tmp);
-        OUT["ema10"] = EMACalc(tmp,50);
+        let tmp = closePriceArray.slice(90, 100);
+        console.log("last10" ,tmp);
+        OUT["ema10"] = EMACalc(tmp,10);
         OUT["ema20"] = ema(closePriceArray.slice(80, 100),20);
-        OUT["ema50"] = ema(closePriceArray,50);
+        OUT["ema50"] = ema(closePriceArray.slice(50, 100),50);
         OUT["ema100"] = ema(closePriceArray, 100);
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
