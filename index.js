@@ -15,7 +15,7 @@ function EMACalc(mArray,Days) {
   let sma = 0;
   for(let j=0;j<11;j++){
     sma+=mArray[j];
-    console.log("mArray[j]",mArray[j]);
+    console.log("mArray[j]",mArray[j],sma);
   }
   sma = sma / 11;
   let emaArray=[];
