@@ -46,13 +46,15 @@ function getSymbolEmaANDLastClose(symbol) {
         let OUT = {};
         let tmp = closePriceArray;
         OUT["ema20New"] = EMACalc(tmp, 20);
+        OUT["ema50New"] = EMACalc(tmp, 50);
+        OUT["ema100New"] = EMACalc(tmp, 100);
         OUT["ema20"] = ema(closePriceArray, 20)[20];
         OUT["ema50"] = ema(closePriceArray, 50)[50];
-        OUT["ema100"] = ema(closePriceArray, 100);
+        OUT["ema100"] = ema(closePriceArray, 100)[100];
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
         resolve(OUT);
-      }, { limit: 101, endTime: +new Date() });
+      }, { limit: 201, endTime: +new Date() });
     } catch (error) {
       reject(error);
     }
