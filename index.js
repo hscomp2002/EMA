@@ -21,7 +21,7 @@ function EMACalc(inpArray, Days) {
   var k = 2 / (Days + 1);
   let smaArr = inpArray.slice(0, inpArray.length-Days);
   let sma = getSma(smaArr);
-  let mArray = inpArray.slice(inpArray.length-Days, 100);
+  let mArray = inpArray.slice(inpArray.length-Days, inpArray.length);
   let emaArray = [];
   emaArray[0] = sma;// mArray[0];
   for (var i = 1; i < mArray.length; i++) {
