@@ -9,22 +9,20 @@ const binance = new Binance().options({
 });
 
 
-function EMACalc(mArray,Days) {
-  var k = 2/(Days + 1);
-  console.log("mArray",mArray);
+function EMACalc(mArray, Days) {
+  var k = 2 / (Days + 1);
+  console.log("mArray.lenght", mArray.length);
   let sma = 0;
-  for(let j=0;j<11;j++){
-    sma+=mArray[j];
-    console.log("mArray[j]",mArray[j],sma);
+  for (let j = 0; j < mArray.length; j++) {
+    sma += mArray[j];
+    console.log("mArray[j]", mArray[j], sma);
   }
-  sma = sma / 11;
-  let emaArray=[];
+  sma = sma / mArray.length;
+  let emaArray = [];
   emaArray[0] = sma;// mArray[0];
-  let ii=1;
   for (var i = 11; i < mArray.length; i++) {
-    console.log(mArray[i],"*",k,"+",emaArray[ii - 1],"*",1-k,mArray[i] * k + emaArray[ii - 1] * (1 - k));
-    emaArray.push(mArray[i] * k + emaArray[ii - 1] * (1 - k));
-    ii++;
+    console.log(mArray[i], "*", k, "+", emaArray[i - 1], "*", 1 - k, mArray[i] * k + emaArray[i - 1] * (1 - k));
+    emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
   }
   //let currentEma = [...emaArray].pop();
   return emaArray;
@@ -42,11 +40,11 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        let tmp = closePriceArray.slice(80, 100);
-        console.log("last10" ,tmp);
-        OUT["ema10"] = EMACalc(tmp,10);
-        OUT["ema20"] = ema(closePriceArray.slice(80, 100),20);
-        OUT["ema50"] = ema(closePriceArray.slice(50, 100),50);
+        let tmp = closePriceArray.slice(90, 100);
+        console.log("last10", tmp);
+        OUT["ema10"] = EMACalc(tmp, 10);
+        OUT["ema20"] = ema(closePriceArray.slice(80, 100), 20);
+        OUT["ema50"] = ema(closePriceArray.slice(50, 100), 50);
         OUT["ema100"] = ema(closePriceArray, 100);
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
@@ -96,7 +94,7 @@ async function getSymbolesInfo() {
     let index = symbole;
     symbole = symbole.replace("/", "");
     let symbolInfo = await getSymbolEmaANDLastClose(symbole);
-    console.log("symbole:",symbole,symbolInfo);
+    console.log("symbole:", symbole, symbolInfo);
     let checkData = calculateSymbolsInfo(symbolInfo);
     // if (!checkData) {
     //   continue;
@@ -130,11 +128,11 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:20,
+          ema: 20,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
           sl: ema50,
-          tp: lastClosePrice + (ema20-ema50)  * 1.5
+          tp: lastClosePrice + (ema20 - ema50) * 1.5
         }
         signals.push(tmpSignal);
       }
@@ -145,11 +143,11 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:20,
+          ema: 20,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
           sl: ema50,
-          tp: lastClosePrice - (ema50-ema20)  * 1.5
+          tp: lastClosePrice - (ema50 - ema20) * 1.5
         }
         signals.push(tmpSignal);
       }
@@ -164,11 +162,11 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:50,
+          ema: 50,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
           sl: ema100,
-          tp: lastClosePrice + (ema50-ema100)  * 1.5
+          tp: lastClosePrice + (ema50 - ema100) * 1.5
         }
         signals.push(tmpSignal);
       }
@@ -179,11 +177,11 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:50,
+          ema: 50,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
           sl: ema100,
-          tp: lastClosePrice - (ema100-ema50)  * 1.5
+          tp: lastClosePrice - (ema100 - ema50) * 1.5
         }
         signals.push(tmpSignal);
       }
@@ -197,11 +195,11 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:100,
+          ema: 100,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.long,
-          sl: lastClosePrice - (ema50-ema100) ,
-          tp: lastClosePrice + (ema50-ema100)  * 1.5
+          sl: lastClosePrice - (ema50 - ema100),
+          tp: lastClosePrice + (ema50 - ema100) * 1.5
         }
         signals.push(tmpSignal);
       }
@@ -212,18 +210,18 @@ function getEntryPosissionSymbols(symbolesInfo) {
           ema50,
           ema100,
           lastClosePrice,
-          ema:100,
+          ema: 100,
           symbol: symbolesInfo[i].symbol,
           threeCommasBotId: symbolesInfo[i].botsData.short,
-          sl: lastClosePrice + (ema100-ema50),
-          tp: lastClosePrice - (ema100-ema50)  * 1.5
+          sl: lastClosePrice + (ema100 - ema50),
+          tp: lastClosePrice - (ema100 - ema50) * 1.5
         }
         signals.push(tmpSignal);
       }
     }
   }
   console.log(symbolesInfo);
-  console.log({signals});
+  console.log({ signals });
   return signals;
 }
 
