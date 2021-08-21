@@ -11,10 +11,11 @@ const binance = new Binance().options({
 
 function EMACalc(mArray,Days) {
   var k = 2/(Days + 1);
-  console.log("k=",k);
+  console.log("mArray",mArray);
   let sma = 0;
   for(let j=0;j<11;j++){
     sma+=mArray[j];
+    console.log("mArray[j]",mArray[j]);
   }
   sma = sma / 11;
   let emaArray=[];
