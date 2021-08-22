@@ -81,10 +81,9 @@ async function getSymbolesInfo() {
     let symbolInfo = await getSymbolEmaANDLastClose(symbole);
     console.log("symbole:", symbole, symbolInfo);
     let checkData = calculateSymbolsInfo(symbolInfo);
-    // if (!checkData) {
-    //   continue;
-    // }
-
+    if (!checkData) {
+      continue;
+    }
     symbolsData.push({
       symbol: symbole,
       symbolInfo: checkData,
@@ -109,9 +108,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 20,
           symbol: symbolesInfo[i].symbol,
@@ -124,9 +120,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 20,
           symbol: symbolesInfo[i].symbol,
@@ -143,9 +136,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 50,
           symbol: symbolesInfo[i].symbol,
@@ -158,9 +148,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 50,
           symbol: symbolesInfo[i].symbol,
@@ -176,9 +163,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       if (marketStatus == "bullish" && lastCandleColor == "red") {
         // LONG POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 100,
           symbol: symbolesInfo[i].symbol,
@@ -191,9 +175,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
       else if (marketStatus == "bearish" && lastCandleColor == "green") {
         // SHORT POSITION
         let tmpSignal = {
-          ema20,
-          ema50,
-          ema100,
           lastClosePrice,
           ema: 100,
           symbol: symbolesInfo[i].symbol,
@@ -205,7 +186,7 @@ function getEntryPosissionSymbols(symbolesInfo) {
       }
     }
   }
-  console.log(symbolesInfo);
+  //console.log(symbolesInfo);
   console.log({ signals });
   return signals;
 }
@@ -218,8 +199,10 @@ function isEqual(ema, price) {
 
 async function main() {
   //const priceList = await binance.prices();
+  console.log("start",new Date().toLocaleDateString());
   const symbolesInfo = await getSymbolesInfo();
   getEntryPosissionSymbols(symbolesInfo);
+  console.log("end",new Date().toLocaleDateString());
 }
 
 main();
