@@ -17,22 +17,6 @@ function getSma(arr) {
   return (sma / arr.length);
 }
 
-function EMACalc(inpArray, Days) {
-  var k = 2 / (Days + 1);
-  let smaArr = inpArray.slice(0, inpArray.length-Days);
-  let sma = getSma(smaArr);
-  let mArray = inpArray.slice(inpArray.length-Days, inpArray.length);
-  let emaArray = [];
-  emaArray[0] = sma;// mArray[0];
-  for (var i = 1; i < mArray.length; i++) {
-    console.log(mArray[i], "*", k, "+", emaArray[i - 1], "*", 1 - k, mArray[i] * k + emaArray[i - 1] * (1 - k));
-    emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
-  }
-  //let currentEma = [...emaArray].pop();
-  return emaArray;
-  //return +currentEma;
-}
-
 function getSymbolEmaANDLastClose(symbol) {
   return new Promise((resolve, reject) => {
     try {
@@ -44,15 +28,11 @@ function getSymbolEmaANDLastClose(symbol) {
           }
         }
         let OUT = {};
-        let tmp = closePriceArray;
-        OUT["ema20New"] = EMACalc(tmp, 20).pop();
-        OUT["ema50New"] = EMACalc(tmp, 50).pop();
-        OUT["ema100New"] = EMACalc(tmp, 100).pop();
         OUT["ema20"] = ema(closePriceArray, 20).pop();
         OUT["ema50"] = ema(closePriceArray, 50).pop();
         OUT["ema100"] = ema(closePriceArray, 100).pop();
         OUT["lastClose"] = closePriceArray[99];
-        OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
+        OUT["lastCandleColor"] = closePriceArray[closePriceArray.length - 1] < closePriceArray[closePriceArray.length - 2] ? "red" : "green";
         resolve(OUT);
       }, { limit: 500, endTime: +new Date() });
     } catch (error) {
