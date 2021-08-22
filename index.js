@@ -1,6 +1,7 @@
 "use strict"
 
 require("dotenv").config();
+const ThreeCommas = require("./libs/3commas.js");
 const ema = require("keltnerchannel").ema;
 const Binance = require("node-binance-api");
 const binance = new Binance().options({
@@ -8,14 +9,6 @@ const binance = new Binance().options({
   APISECRET: process.env.APISECRET
 });
 
-
-function getSma(arr) {
-  let sma = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sma += arr[i];
-  }
-  return (sma / arr.length);
-}
 
 function getSymbolEmaANDLastClose(symbol) {
   return new Promise((resolve, reject) => {
@@ -204,4 +197,5 @@ async function main() {
   console.log("end",new Date().toLocaleTimeString());
 }
 
-main();
+//main();
+ThreeCommas.openDeal();
