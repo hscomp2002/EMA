@@ -207,14 +207,14 @@ async function main() {
 }
 
 
-main();
+//main();
 
-// cron.schedule('*/15 * * * *', () => {
-//   setTimeout(() => {
-//     main();
-//   }, 1000)
+cron.schedule('*/15 * * * *', () => {
+  setTimeout(() => {
+    main();
+  }, 1000)
 
-// });
-// setTimeout(() => {
-//   process.exit();
-// }, 1100 * 60 * 60);
+});
+setTimeout(() => {
+  process.exit();
+}, 1100 * 60 * 60);
