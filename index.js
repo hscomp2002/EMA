@@ -199,7 +199,9 @@ async function main() {
   console.log("start",new Date().toLocaleTimeString());
   const symbolesInfo = await getSymbolesInfo();
   const emaSignals = getEntryPosissionSymbols(symbolesInfo);
-  sendSignalTo3commas(emaSignals);
+  if(emaSignals.length > 0 ){
+    sendSignalTo3commas(emaSignals);
+  }
   console.log("end",new Date().toLocaleTimeString());
 }
 
