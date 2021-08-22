@@ -31,7 +31,7 @@ function getSymbolEmaANDLastClose(symbol) {
         OUT["ema20"] = ema(closePriceArray, 20).pop();
         OUT["ema50"] = ema(closePriceArray, 50).pop();
         OUT["ema100"] = ema(closePriceArray, 100).pop();
-        OUT["lastClose"] = closePriceArray[99];
+        OUT["lastClose"] = closePriceArray[closePriceArray.length - 1];
         OUT["lastCandleColor"] = closePriceArray[closePriceArray.length - 1] < closePriceArray[closePriceArray.length - 2] ? "red" : "green";
         resolve(OUT);
       }, { limit: 500, endTime: +new Date() });
