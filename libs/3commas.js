@@ -11,7 +11,7 @@ class ThreeCommas {
     async openDeal(dealData) {
         return new Promise((resolve, reject) => {
             console.log("openDeal");
-            TelegramController.sendMsg(, `EMA symbol:${dealData.symbol} -- TimeFrame:${process.env.TIMEFRAME} sl:${dealData.sl} tp:${dealData.tp} -- ema:${dealData.ema}`);
+            TelegramController.sendMsg(`EMA symbol:${dealData.symbol} -- TimeFrame:${process.env.TIMEFRAME} sl:${dealData.sl} tp:${dealData.tp} -- ema:${dealData.ema}`);
         })
     }
 }
