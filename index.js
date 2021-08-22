@@ -1,7 +1,8 @@
 "use strict"
 
 require("dotenv").config();
-const ThreeCommas = require("./libs/3commas.js");
+const TC = require("./libs/3commas.js");
+const threeCommas  = new TC;
 const ema = require("keltnerchannel").ema;
 const Binance = require("node-binance-api");
 const binance = new Binance().options({
@@ -180,7 +181,6 @@ function getEntryPosissionSymbols(symbolesInfo) {
     }
   }
   //console.log(symbolesInfo);
-  console.log({ signals });
   return signals;
 }
 
@@ -190,12 +190,17 @@ function isEqual(ema, price) {
   return (price <= upSide && price >= downSide);
 }
 
+async function sendSignalTo3commas(emaSignals){
+  for(let i in emaSignals){
+    await threeCommas.openDeal(emaSignals[i]);
+  }
+}
 async function main() {
   console.log("start",new Date().toLocaleTimeString());
   const symbolesInfo = await getSymbolesInfo();
-  getEntryPosissionSymbols(symbolesInfo);
+  const emaSignals = getEntryPosissionSymbols(symbolesInfo);
+  sendSignalTo3commas(emaSignals);
   console.log("end",new Date().toLocaleTimeString());
 }
 
-//main();
-ThreeCommas.openDeal();
+main();

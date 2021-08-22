@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "3commas-api-node": "^1.0.9",
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
+    "http-build-query": "^0.7.0",
     "keltnerchannel": "^1.4.3",
     "node-binance-api": "^0.12.5"
   }
