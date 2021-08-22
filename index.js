@@ -2,8 +2,9 @@
 
 require("dotenv").config();
 const TC = require("./libs/3commas.js");
-const threeCommas  = new TC;
+const threeCommas = new TC;
 const ema = require("keltnerchannel").ema;
+const cron = require('node-cron');
 const Binance = require("node-binance-api");
 const binance = new Binance().options({
   APIKEY: process.env.APIKEY,
@@ -190,19 +191,30 @@ function isEqual(ema, price) {
   return (price <= upSide && price >= downSide);
 }
 
-async function sendSignalTo3commas(emaSignals){
-  for(let i in emaSignals){
+async function sendSignalTo3commas(emaSignals) {
+  for (let i in emaSignals) {
     await threeCommas.openDeal(emaSignals[i]);
   }
 }
 async function main() {
-  console.log("start",new Date().toLocaleTimeString());
+  console.log("start", new Date().toLocaleTimeString());
   const symbolesInfo = await getSymbolesInfo();
   const emaSignals = getEntryPosissionSymbols(symbolesInfo);
-  if(emaSignals.length > 0 ){
+  if (emaSignals.length > 0) {
     sendSignalTo3commas(emaSignals);
   }
-  console.log("end",new Date().toLocaleTimeString());
+  console.log("end", new Date().toLocaleTimeString());
 }
 
+
 main();
+
+// cron.schedule('*/15 * * * *', () => {
+//   setTimeout(() => {
+//     main();
+//   }, 1000)
+
+// });
+// setTimeout(() => {
+//   process.exit();
+// }, 1100 * 60 * 60);

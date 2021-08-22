@@ -14,6 +14,7 @@
     "dotenv": "^10.0.0",
     "http-build-query": "^0.7.0",
     "keltnerchannel": "^1.4.3",
-    "node-binance-api": "^0.12.5"
+    "node-binance-api": "^0.12.5",
+    "node-cron": "^3.0.0"
   }
 }
