@@ -54,7 +54,7 @@ function getSymbolEmaANDLastClose(symbol) {
         OUT["lastClose"] = closePriceArray[99];
         OUT["lastCandleColor"] = closePriceArray[99] < closePriceArray[98] ? "red" : "green";
         resolve(OUT);
-      }, { limit: 201, endTime: +new Date() });
+      }, { limit: 500, endTime: +new Date() });
     } catch (error) {
       reject(error);
     }
