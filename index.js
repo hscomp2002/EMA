@@ -199,10 +199,10 @@ function isEqual(ema, price) {
 
 async function main() {
   //const priceList = await binance.prices();
-  console.log("start",new Date().toLocaleDateString());
+  console.log("start",new Date().toLocaleTimeString());
   const symbolesInfo = await getSymbolesInfo();
   getEntryPosissionSymbols(symbolesInfo);
-  console.log("end",new Date().toLocaleDateString());
+  console.log("end",new Date().toLocaleTimeString());
 }
 
 main();
